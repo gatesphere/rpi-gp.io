@@ -77,7 +77,7 @@ GPIO := Object clone do(
 )
 
 // test if script being run as root, throw exception if not.
-if(System getEnvironmentVariable("EUID") != "0",
+if(System system("[ \"`id -u`\" -ne \"0\" ]") == 0,
   Exception raise("GPIO may only be manipulated by root!")
 )
 
